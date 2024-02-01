@@ -2,7 +2,7 @@
 
 //start the game
 var level = 1;
-var speed = 500;
+var speed = 200;
 // $("body").keydown(function(event){
     
 //     if(event.key == "a"){
