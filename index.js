@@ -106,8 +106,6 @@ function answer(level, speed) {
     return colors;
 }
 
-
-
 // animation
 function buttonAnimation(color) {
 
