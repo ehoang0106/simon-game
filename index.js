@@ -1,150 +1,92 @@
 
 
-//start the game
-var level = 1;
-var speed = 200;
-// $("body").keydown(function(event){
-    
-//     if(event.key == "a"){
-//         $("h2").text("Level " + level);
+var colors = ["green", "red", "yellow", "blue"];
 
-//         var answerColors = answer(level, 500);
-//         var guessColors = guess1();
-        
-        
-//         if (guessColors.length === level) {
-//             console.log("User guessed: ", guessColors);
-//             console.log("Correct answer: ", answerColors);
-//             if (arraysEqual(guessColors, answerColors)) {
-//                 console.log("Correct!");
-//                 level += 1;
-//             } else {
-//                 console.log("Wrong!");
-//             }
-//         }
+var answerColors = [];
 
-        
-        
-//     }
-// })
+var guessedColors = [];
 
-$("body").keydown(function(event){
-    
-    if(event.key == "a"){
-        $("h2").text("Level " + level);
+console.log(guessedColors);
 
-        var answerColors = answer(level, speed);
-        var guessColors = [];
-        
-        
-        $(".item").click(function(){
-            var colorClicked = $(this).attr("class").split(" ")[1];
-            guessColors.push(colorClicked);
-            buttonAnimation(colorClicked);
+var isStarted = false;
 
-            if (guessColors.length === level){
-                if(arraysEqual(guessColors, answerColors)){
-                    console.log("Correct!");
-                    level += 1;
-                    speed += 100;
-                }
-                else{
-                    console.log("Incorrect!");
-                }
-            }
-        })
+var level = 0;
 
-        
-        
+
+
+
+$(document).keypress(function() {
+    if (!isStarted) {
+        $("#level-title").text("Level " + level);
+        nextLevel();
+        isStarted = true;
     }
 })
 
-
-// random a color: 1/green 2/red 3/yellow 4/blue
-function randomColor (level){
-    
-    var colors = [];
-    
-    for (var i=0; i<level; i++){
-        var color = Math.floor(Math.random() * 4) + 1;
-        if(color == "1"){
-            colors.push("green");
-        }
-        else if(color == "2"){
-            colors.push("red");
-        }
-        else if(color == "3"){
-            colors.push("yellow");
-        }
-        else if(color == "4"){
-            colors.push("blue");
-        }
-
+$("h2").click(function() {
+    if (!isStarted) {
+        $("#level-title").text("Level " + level);
+        nextLevel();
+        isStarted = true;
     }
-    
-    for(var i=0; i<colors.length;i++){
-        return colors;
-    }
-    
-}
+})
 
-function answer(level, speed) {
-    var colors = randomColor(level);
+$(".btn").on("click", function() {
+    var colorClicked = $(this).attr("id");
+    guessedColors.push(colorClicked);
 
-    for (var i = 0; i<colors.length; i++){
-        
-        (function(index){
-            
-            setTimeout(function(){
-                console.log(colors[index]);
-                buttonAnimation(colors[index]);
-            }, speed * index);
-        })(i);
-    }
+    buttonAnimation(colorClicked);
+    console.log(colorClicked);
 
-    //console.log(colors);
-    return colors;
-}
+    answerCheck(guessedColors.length-1);
+})
 
-// animation
-function buttonAnimation(color) {
 
-    var activeButton = $("." + color)
-    activeButton.addClass("pressed");
+
+function buttonAnimation(currentColor) {
+    $("#" + currentColor).addClass("pressed");
 
     setTimeout(function() {
-        activeButton.removeClass("pressed");
-    }, 150)
+        $("#" + currentColor).removeClass("pressed");
+    }, 100);
 }
 
-// add animation when click the right color
-function guess(){
-    //create array to save answer
-    var guessColors = [];
-    for (var i=0; i<$(".item").length; i++){
+function restartGame() {
+    level = 0;
+    answerColors = [];
+    isStarted = false;
+}
 
-        var colorItem = $(".item")[i].classList[1];
-    
-        function J(colorItemJ) {
-            $("." + colorItemJ).click(function(){
-                buttonAnimation(colorItemJ);
-                console.log(colorItemJ);
-                guessColors.push(colorItemJ);
-                console.log(guessColors);
-            });
+function nextLevel() {
+    guessedColors = [] ;
+    level++;
+
+    $("#level-title").text("Level " + level);
+
+    var ranNum = Math.floor(Math.random() * 4);
+    var ranColor = colors[ranNum];
+    answerColors.push(ranColor);
+    $("#" + ranColor).fadeIn(100).fadeOut(100).fadeIn(100);
+
+}
+
+function answerCheck(level) {
+    if(answerColors[level] === guessedColors[level]) {
+        if (guessedColors.length === answerColors.length){
+            setTimeout(function() {
+                nextLevel();
+            }, 1000);
         }
-        J(colorItem);
     }
+    else {
+        $("body").addClass("wrong");
+        $("#level-title").text("Oops, your memory is so bad!. Press any key to restart");
 
-    return guessColors;
-    
-}
+        setTimeout(function() {
+            $("body").removeClass("wrong");
+        }, 200);
 
-function arraysEqual(arr1, arr2) {
-    if (arr1.length !== arr2.length) return false;
-    for (var i = 0; i < arr1.length; i++) {
-        if (arr1[i] !== arr2[i]) return false;
+        restartGame();
     }
-    return true;
 }
 
