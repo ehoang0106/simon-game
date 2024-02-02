@@ -4,14 +4,14 @@ body {
 }
 
 
+/* Mobile version */
 @media only screen and (max-width: 750px) {
     h1 {
         margin-top: 50px;
-        font-size: 20px;
+        font-size: 28px;
         text-align: center;
         color: #FF9843;
         
-
 
     }
 
@@ -45,7 +45,21 @@ body {
         border: solid 5px black;
         border-radius: 20px;
     }
-        
+    
+    .wrong {
+        background-color: red;
+        opacity: 0.7;
+    }
+
+    button {
+        height: 50px;
+        width: 120px;
+        background-color: #ECF4D6;
+        border: 0;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        margin-top: 10px;
+    }
 
 }
 
@@ -56,7 +70,7 @@ body {
 
 
     h1 {
-        margin-top: 50px;
+        margin-top: 80px;
         color: #FF9843;
         font-size: 40px;
     }
@@ -97,7 +111,15 @@ body {
         border-radius: 20px;
     }
 
-    
+    button {
+        height: 50px;
+        width: 120px;
+        background-color: #ECF4D6;
+        border: 0;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
 }
 
 .green {
@@ -121,3 +143,9 @@ body {
     box-shadow: 0 0 20px white;
     background-color: #B4B4B8;
 }
+
+.prompted {
+    box-shadow: 0 0 20px rgb(119, 255, 0);
+    background-color: #9a9da0;
+}
+
