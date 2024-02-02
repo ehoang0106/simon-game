@@ -8,10 +8,14 @@ var guessedColors = [];
 var isStarted = false;
 
 var level = 0;
+var score = 0;
 
+var highestScore = 0;
 
 $("button").click(function () {
     if(!isStarted) {
+
+        restartGame();
         $("#level-title").text("Level " + level);
         nextLevel();
         isStarted = true;
@@ -25,7 +29,9 @@ $(".btn").on("click", function() {
     buttonAnimation(colorClicked);
     console.log(colorClicked);
 
-    answerCheck(guessedColors.length-1);
+    if(isStarted){
+        answerCheck(guessedColors.length-1);
+    }
 
     console.log(answerColors);
 })
@@ -69,16 +75,26 @@ function nextLevel() {
 }
 
 function answerCheck(level) {
+    
+    
+
     if(answerColors[level] === guessedColors[level]) {
         if (guessedColors.length === answerColors.length){
             setTimeout(function() {
                 nextLevel();
+                // score += 100;
+                // highestScore = score;
+                // $("#current-score").text(score);
+                
+
             }, 1000);
         }
     }
     else {
         $("body").addClass("wrong");
         $("#level-title").text("Oops, your memory is so bad!");
+        // $("#score").text("Highest score: ");
+        // $("#current-score").text("z " + highestScore);
 
         setTimeout(function() {
             $("body").removeClass("wrong");
@@ -87,4 +103,5 @@ function answerCheck(level) {
         restartGame();
     }
 }
+
 
