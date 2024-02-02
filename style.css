@@ -1,63 +1,123 @@
 body {
     font-family: 'Press Start 2P', system-ui;
+    background-color: #011F3F;
 }
 
-h1 {
-    margin-top: 50px;
-    color: #F3B95F;
-    font-size: 40px;
-}
 
-h2 {
-    color: #030637;
-    text-align: center;
-    font-size: 30px;
-}
+@media only screen and (max-width: 750px) {
+    h1 {
+        margin-top: 50px;
+        font-size: 20px;
+        text-align: center;
+        color: #FF9843;
+        
 
-.container {
-    display: flex;
-    justify-content: start;
-    height: 100vh;
-    flex-direction: column;
-    align-items: center;
+
+    }
+
+    h2 {
+        color: #FFDD95;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 60px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: start;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
     
+        
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 300px;
+        width: 300px;
+        gap: 10px;
+    }
+
+    .btn {
+        border: solid 5px black;
+        border-radius: 20px;
+    }
+        
+
+}
+
+/* PC version */
+
+@media only screen and (min-width: 751px) {
+
+
+
+    h1 {
+        margin-top: 50px;
+        color: #FF9843;
+        font-size: 40px;
+    }
+
+    h2 {
+        color: #FFDD95;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: start;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        
+        
+    }
+
+    .grid-container {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 400px;
+        width: 400px;
+        gap: 20px;
+    }
+
+    .wrong {
+        background-color: red;
+        opacity: 0.7;
+    }
+
+    .btn {
+        border: solid 10px black;
+        border-radius: 20px;
+    }
+
     
-}
-
-.grid-container {
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 400px;
-    width: 400px;
-    gap: 20px;
-}
-
-
-.item {
-    border: solid 10px black;
-    border-radius: 20px;
 }
 
 .green {
-    background-color: green;
+    background-color: #4BFF88;
 }
 
 .red {
-    background-color: red;
+    background-color: #FF4B4B;
 
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: #FFD64B;
 }
 
 .blue {
-    background-color: blue;
+    background-color: #4B88FF;
 }
 
 .pressed {
-    box-shadow: 0 3px 4px 0 #DBEDF3;
-    opacity: 0.5;
+    box-shadow: 0 0 20px white;
+    background-color: #B4B4B8;
 }
