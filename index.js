@@ -1,30 +1,17 @@
 
-
 var colors = ["green", "red", "yellow", "blue"];
 
 var answerColors = [];
-
 var guessedColors = [];
 
-console.log(guessedColors);
 
 var isStarted = false;
 
 var level = 0;
 
 
-
-
-$(document).keypress(function() {
-    if (!isStarted) {
-        $("#level-title").text("Level " + level);
-        nextLevel();
-        isStarted = true;
-    }
-})
-
-$("h2").click(function() {
-    if (!isStarted) {
+$("button").click(function () {
+    if(!isStarted) {
         $("#level-title").text("Level " + level);
         nextLevel();
         isStarted = true;
@@ -39,6 +26,8 @@ $(".btn").on("click", function() {
     console.log(colorClicked);
 
     answerCheck(guessedColors.length-1);
+
+    console.log(answerColors);
 })
 
 
@@ -48,6 +37,14 @@ function buttonAnimation(currentColor) {
 
     setTimeout(function() {
         $("#" + currentColor).removeClass("pressed");
+    }, 100);
+}
+
+function promptAnimation(currentColor) {
+    $("#" + currentColor).addClass("prompted");
+
+    setTimeout(function() {
+        $("#" + currentColor).removeClass("prompted");
     }, 100);
 }
 
@@ -66,8 +63,9 @@ function nextLevel() {
     var ranNum = Math.floor(Math.random() * 4);
     var ranColor = colors[ranNum];
     answerColors.push(ranColor);
-    $("#" + ranColor).fadeIn(100).fadeOut(100).fadeIn(100);
 
+    promptAnimation(ranColor);
+    
 }
 
 function answerCheck(level) {
@@ -80,7 +78,7 @@ function answerCheck(level) {
     }
     else {
         $("body").addClass("wrong");
-        $("#level-title").text("Oops, your memory is so bad!. Press any key to restart");
+        $("#level-title").text("Oops, your memory is so bad!");
 
         setTimeout(function() {
             $("body").removeClass("wrong");
