@@ -41,8 +41,8 @@ body {
 
     .grid-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 140px 140px;
+        grid-template-rows: 140px 140px;
         height: 300px;
         width: 300px;
         gap: 10px;
@@ -111,8 +111,8 @@ body {
     .grid-container {
         margin-top: 50px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 180px 180px;
+        grid-template-rows: 180px 180px;
         height: 400px;
         width: 400px;
         gap: 20px;
